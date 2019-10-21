@@ -3,6 +3,7 @@ package com.haanhgs.asyncloaderrecyclerviewnetwork;
 public class Constants{
 
     public static final String VOLUME_INFO = "volumeInfo";
+    public static final String ITEMS = "items";
     public static final String TITLE = "title";
     public static final String AUTHORS = "authors";
 

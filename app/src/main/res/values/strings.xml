@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">AsyncLoader RecyclerView Network</string>
+    <string name="app_name">Book search</string>
     <string name="bnSearch">Search</string>
 </resources>
