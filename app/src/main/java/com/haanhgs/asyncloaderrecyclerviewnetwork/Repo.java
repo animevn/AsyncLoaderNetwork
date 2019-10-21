@@ -13,9 +13,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class JsonParser {
+public final class Repo {
 
-    private JsonParser(){}
+    private Repo(){}
 
     private static Uri buildUri(String query){
         return Uri.parse(Constants.BOOK_URL).buildUpon()
@@ -68,4 +68,20 @@ public final class JsonParser {
         }
         return bookList;
     }
+
+    public static String getAuthorsFromList(List<String> list){
+        StringBuilder authors = new StringBuilder();
+        for (int i = 0; i < list.size(); i++){
+            if (i != list.size() - 1){
+                authors.append(list.get(i)).append("\n");
+            }else {
+                authors.append(list.get(i));
+            }
+        }
+        return authors.toString();
+    }
+
+
+
+
 }

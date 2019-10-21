@@ -12,4 +12,6 @@ public class Constants{
     public static final String MAX_RESULT = "maxResults";
     public static final String PRINT_TYPE = "printType";
 
+    public static final String SEARCH_QUERY = "search_query";
+
 }

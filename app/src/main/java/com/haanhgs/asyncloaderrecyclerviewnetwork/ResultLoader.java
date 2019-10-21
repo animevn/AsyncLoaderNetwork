@@ -23,6 +23,6 @@ public class ResultLoader extends AsyncTaskLoader<String> {
     @Nullable
     @Override
     public String loadInBackground() {
-        return JsonParser.getBookInfo(query);
+        return Repo.getBookInfo(query);
     }
 }
