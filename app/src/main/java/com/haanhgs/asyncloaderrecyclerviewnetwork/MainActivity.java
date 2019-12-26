@@ -8,10 +8,6 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,20 +36,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void checkNetwork(){
-        ConnectivityManager manager = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
-        if (manager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            NetworkCapabilities info = manager.getNetworkCapabilities(manager.getActiveNetwork());
-            isNetworkAvailable = info != null &&
-                            (info.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-                            || info.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
-        } else if (manager != null && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP){
-            NetworkInfo info = manager.getActiveNetworkInfo();
-            isNetworkAvailable = info != null && info.isConnected();
-        }
-    }
-
-
     private void hideKeyboard(View view){
         InputMethodManager manager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         if (manager != null){
@@ -63,8 +45,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startSearching(View view){
-        checkNetwork();
-        if (!TextUtils.isEmpty(etQuery.getText()) && isNetworkAvailable){
+        if (!TextUtils.isEmpty(etQuery.getText()) && Repo.checkNetwork(this)){
             hideKeyboard(view);
             Bundle bundle = new Bundle();
             bundle.putString(Constants.SEARCH_QUERY, etQuery.getText().toString());

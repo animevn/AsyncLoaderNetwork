@@ -1,6 +1,12 @@
 package com.haanhgs.asyncloaderrecyclerviewnetwork;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public final class Repo {
 
@@ -81,6 +89,20 @@ public final class Repo {
         return authors.toString();
     }
 
+    public static boolean checkNetwork(Context context){
+        ConnectivityManager manager = (ConnectivityManager)
+                context.getSystemService(CONNECTIVITY_SERVICE);
+        if (manager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            NetworkCapabilities info = manager.getNetworkCapabilities(manager.getActiveNetwork());
+            return info != null &&
+                    (info.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+                            || info.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
+        } else if (manager != null && Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP){
+            NetworkInfo info = manager.getActiveNetworkInfo();
+            return info != null && info.isConnected();
+        }
+        return false;
+    }
 
 
 
