@@ -1,4 +1,4 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork;
+package com.haanhgs.asyncloaderrecyclerviewnetwork.model;
 
 import java.util.List;
 
