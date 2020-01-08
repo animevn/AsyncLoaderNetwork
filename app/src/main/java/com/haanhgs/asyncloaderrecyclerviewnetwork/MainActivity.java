@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView rvMain;
     private EditText etQuery;
     private Button bnSearch;
-    private boolean isNetworkAvailable = false;
 
     private void initViews(){
         rvMain = findViewById(R.id.rvMain);

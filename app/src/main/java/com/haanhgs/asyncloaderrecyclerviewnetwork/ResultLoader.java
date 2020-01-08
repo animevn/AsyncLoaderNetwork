@@ -7,7 +7,7 @@ import androidx.loader.content.AsyncTaskLoader;
 
 public class ResultLoader extends AsyncTaskLoader<String> {
 
-    private String query;
+    private final String query;
 
     public ResultLoader(@NonNull Context context, String query) {
         super(context);

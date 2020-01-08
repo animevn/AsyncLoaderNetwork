@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private List<Book> bookList;
+    private final List<Book> bookList;
 
     public BookAdapter(List<Book> bookList){
         this.bookList = bookList;
@@ -39,8 +39,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvTitle;
-        private TextView tvAuthors;
+        private final TextView tvTitle;
+        private final TextView tvAuthors;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
