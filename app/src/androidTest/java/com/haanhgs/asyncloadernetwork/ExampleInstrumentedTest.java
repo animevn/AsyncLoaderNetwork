@@ -1,4 +1,4 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork;
+package com.haanhgs.asyncloadernetwork;
 
 import android.content.Context;
 

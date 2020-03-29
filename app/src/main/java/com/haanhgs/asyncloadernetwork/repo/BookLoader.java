@@ -1,4 +1,4 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork.repo;
+package com.haanhgs.asyncloadernetwork.repo;
 
 import android.content.Context;
 import androidx.annotation.NonNull;

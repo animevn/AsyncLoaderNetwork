@@ -1,14 +1,14 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork.view;
+package com.haanhgs.asyncloadernetwork.view;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.R;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.model.Constants;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.repo.BookLoader;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.repo.Repo;
+import com.haanhgs.asyncloadernetwork.R;
+import com.haanhgs.asyncloadernetwork.model.Constants;
+import com.haanhgs.asyncloadernetwork.repo.BookLoader;
+import com.haanhgs.asyncloadernetwork.repo.Repo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork.repo;
+package com.haanhgs.asyncloadernetwork.repo;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -9,8 +9,8 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.model.Constants;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.model.Book;
+import com.haanhgs.asyncloadernetwork.model.Constants;
+import com.haanhgs.asyncloadernetwork.model.Book;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

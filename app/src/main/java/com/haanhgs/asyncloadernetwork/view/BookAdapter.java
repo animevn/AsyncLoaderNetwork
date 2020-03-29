@@ -1,13 +1,13 @@
-package com.haanhgs.asyncloaderrecyclerviewnetwork.view;
+package com.haanhgs.asyncloadernetwork.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.R;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.model.Book;
-import com.haanhgs.asyncloaderrecyclerviewnetwork.repo.Repo;
+import com.haanhgs.asyncloadernetwork.R;
+import com.haanhgs.asyncloadernetwork.model.Book;
+import com.haanhgs.asyncloadernetwork.repo.Repo;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
