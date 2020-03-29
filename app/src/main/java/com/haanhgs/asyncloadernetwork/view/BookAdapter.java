@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.haanhgs.asyncloadernetwork.R;
 import com.haanhgs.asyncloadernetwork.model.Book;
-import com.haanhgs.asyncloadernetwork.repo.Repo;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +15,9 @@ import butterknife.ButterKnife;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private final List<Book> bookList;
+    private List<Book> bookList;
 
-    public BookAdapter(List<Book> bookList) {
+    public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
 
@@ -34,7 +33,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Book book = bookList.get(position);
         holder.tvTitle.setText(book.getTitle());
-        holder.tvAuthor.setText(Repo.getAuthors(book.getAuthors()));
+        holder.tvAuthor.setText(book.getAuthors());
     }
 
     @Override

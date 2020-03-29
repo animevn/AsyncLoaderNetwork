@@ -1,11 +1,9 @@
 package com.haanhgs.asyncloadernetwork.model;
 
-import java.util.List;
-
 public class Book {
 
     private String title;
-    private List<String> authors;
+    private String authors;
 
     public String getTitle() {
         return title;
@@ -15,11 +13,11 @@ public class Book {
         this.title = title;
     }
 
-    public List<String> getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
+    public void setAuthors(String authors) {
         this.authors = authors;
     }
 }

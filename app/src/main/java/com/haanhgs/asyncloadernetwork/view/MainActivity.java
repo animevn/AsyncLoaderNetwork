@@ -6,23 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.haanhgs.asyncloadernetwork.R;
-import com.haanhgs.asyncloadernetwork.model.Constants;
-import com.haanhgs.asyncloadernetwork.repo.BookLoader;
-import com.haanhgs.asyncloadernetwork.repo.Repo;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.haanhgs.asyncloadernetwork.model.Book;
+import com.haanhgs.asyncloadernetwork.viewmodel.MyViewModel;
+import java.util.ArrayList;
+import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import static com.haanhgs.asyncloadernetwork.view.MainHelper.hideKeyboard;
+import static com.haanhgs.asyncloadernetwork.view.MainHelper.isNetworkAvailable;
 
-public class MainActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<String> {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.etQuery)
     EditText etQuery;
@@ -31,12 +29,23 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.rvMain)
     RecyclerView rvMain;
 
-    private Loader<String> loader;
+    private MyViewModel viewModel;
+    private BookAdapter adapter = new BookAdapter();
+    private List<Book> bookList = new ArrayList<>();
 
-    private void initLoader(){
-        if (LoaderManager.getInstance(this).getLoader(1) != null){
-            LoaderManager.getInstance(this).initLoader(1, null, this);
-        }
+    private void initRecyclerView(){
+        rvMain.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setBookList(bookList);
+        rvMain.setAdapter(adapter);
+    }
+
+    private void initViewModel(){
+        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        viewModel.getData().observe(this, books -> {
+            bookList.clear();
+            bookList.addAll(books);
+            adapter.notifyDataSetChanged();
+        });
     }
 
     @Override
@@ -44,15 +53,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initLoader();
+        initRecyclerView();
+        initViewModel();
     }
 
     private void handleButton(View view){
-        if (!TextUtils.isEmpty(etQuery.getText()) && Repo.isNetworkAvailable(this)){
-            Repo.hideKeyboard(this, view);
-            Bundle bundle = new Bundle();
-            bundle.putString(Constants.SEARCH_QUERY, etQuery.getText().toString());
-            LoaderManager.getInstance(this).restartLoader(1, bundle, this);
+        if (!TextUtils.isEmpty(etQuery.getText()) && isNetworkAvailable(this)){
+            hideKeyboard(this, view);
+            viewModel.runQuery(etQuery.getText().toString());
         }
     }
 
@@ -61,23 +69,4 @@ public class MainActivity extends AppCompatActivity
         handleButton(view);
     }
 
-    @NonNull
-    @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        String query = args == null ? "" : args.getString(Constants.SEARCH_QUERY);
-        return new BookLoader(this, query);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        if (data != null){
-            rvMain.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-            rvMain.setAdapter(new BookAdapter(Repo.getBookList(data)));
-        }
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-
-    }
 }
